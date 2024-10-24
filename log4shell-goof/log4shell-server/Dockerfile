@@ -5,6 +5,9 @@ RUN --mount=target=$HOME/.m2,type=cache mvn clean package
 
 FROM openjdk:24-ea-19-jdk-oraclelinux8 as ldap
 COPY --from=build target/log4shell-server-*-jar-with-dependencies.jar /server.jar
+
+RUN yum update -y openssl-libs
+
 EXPOSE 8000
 EXPOSE 9999
 
